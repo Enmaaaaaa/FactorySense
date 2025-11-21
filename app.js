@@ -5,11 +5,9 @@
 
 // ============================================
 // CONFIGURACIÓN DE SUPABASE
-// ⚠️ IMPORTANTE: Reemplaza estos valores con tus credenciales reales
 // ============================================
-const SUPABASE_URL = 'TU_SUPABASE_URL_AQUI';  // Ejemplo: 'https://xxxxx.supabase.co'
-const SUPABASE_ANON_KEY = 'TU_SUPABASE_ANON_KEY_AQUI';  // Tu clave anon/public
-
+const SUPABASE_URL = 'https://vocjaerbdjsmqvwmvkud.supabase.co';  
+const SUPABASE_ANON_KEY = 'sb_publishable_N1MKtHu9yS1lSNvaTwlYog_u6dgfG2S';  
 // Inicializar cliente Supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -805,4 +803,5 @@ window.addEventListener('beforeunload', () => {
     }
     
     console.log('👋 FactorySense cerrado');
+
 });
