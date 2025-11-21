@@ -3,7 +3,6 @@
    Sistema de Monitoreo Industrial IoT
    ============================================ */
 
-/* Reset y Variables CSS */
 * {
     margin: 0;
     padding: 0;
@@ -709,3 +708,4 @@ body {
     }
 
 }
+
