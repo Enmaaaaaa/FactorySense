@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactorySense - Monitoreo Industrial IoT</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Librerías externas -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">FS</div>
+                <div>
+                    <h1>FactorySense</h1>
+                    <p class="logo-subtitle">Monitoreo Industrial en Tiempo Real</p>
+                </div>
+            </div>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                <span id="connectionStatus">Conectando...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Mensaje de Error Global -->
+        <div id="errorMessage" class="error-message"></div>
+
+        <!-- Banner de Alerta Crítica -->
+        <div id="alertBanner" class="alert-banner">
+            <strong>⚠️ Alerta Crítica:</strong> <span id="alertBannerText"></span>
+        </div>
+
+        <!-- Selector de Planta -->
+        <div class="plant-selector">
+            <label for="plantSelect">Seleccionar Planta</label>
+            <select id="plantSelect">
+                <option value="">Cargando plantas...</option>
+            </select>
+        </div>
+
+        <!-- Grid de Métricas -->
+        <div class="metrics-grid">
+            <!-- Temperatura Promedio -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div>
+                        <div class="metric-title">Temperatura Promedio</div>
+                        <div class="metric-value">
+                            <span id="avgTemp">--</span>
+                            <span class="metric-unit">°C</span>
+                        </div>
+                        <div class="metric-change">
+                            <span id="tempChange">Calculando...</span>
+                        </div>
+                    </div>
+                    <div class="metric-icon temp">🌡️</div>
+                </div>
+            </div>
+
+            <!-- Máquinas Activas -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div>
+                        <div class="metric-title">Máquinas Activas</div>
+                        <div class="metric-value">
+                            <span id="activeMachines">--</span>
+                            <span class="metric-unit">/ <span id="totalMachines">--</span></span>
+                        </div>
+                        <div class="metric-change">
+                            <span id="machineStatus">--</span>
+                        </div>
+                    </div>
+                    <div class="metric-icon machine">⚙️</div>
+                </div>
+            </div>
+
+            <!-- Alertas Abiertas -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div>
+                        <div class="metric-title">Alertas Abiertas</div>
+                        <div class="metric-value">
+                            <span id="openAlerts">--</span>
+                        </div>
+                        <div class="metric-change">
+                            <span id="alertStatus">--</span>
+                        </div>
+                    </div>
+                    <div class="metric-icon alert">🚨</div>
+                </div>
+            </div>
+
+            <!-- Sensores Activos -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div>
+                        <div class="metric-title">Sensores Activos</div>
+                        <div class="metric-value">
+                            <span id="activeSensors">--</span>
+                        </div>
+                        <div class="metric-change">
+                            <span id="sensorStatus">--</span>
+                        </div>
+                    </div>
+                    <div class="metric-icon sensor">📡</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Principal: Gráfico y Alertas -->
+        <div class="main-grid">
+            <!-- Tarjeta de Gráfico -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2 class="chart-title">Monitoreo de Temperatura en Tiempo Real</h2>
+                    <div class="chart-controls">
+                        <button class="active" data-range="1h">1H</button>
+                        <button data-range="24h">24H</button>
+                        <button data-range="7d">7D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="telemetryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Panel de Alertas -->
+            <div class="alerts-panel">
+                <div class="alerts-header">
+                    <h2 class="alerts-title">Alertas Recientes</h2>
+                    <span class="alert-count" id="alertCountBadge">0</span>
+                </div>
+                <div id="alertsList">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Máquinas -->
+        <div class="machines-section">
+            <h2 class="section-title">Máquinas y Sensores</h2>
+            <div id="machinesGrid" class="machines-grid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
