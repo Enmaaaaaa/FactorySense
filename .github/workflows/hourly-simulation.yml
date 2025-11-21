@@ -13,7 +13,7 @@ jobs:
       - name: Insert fake sensor telemetry
         run: |
           curl -i \
-            -H "Authorization: Bearer ${{ secrets.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvY2phZXJiZGpzbXF2d212a3VkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MzY2MTY0NCwiZXhwIjoyMDc5MjM3NjQ0fQ.HKt6baX9nFGsV38DKrk4FAoxNZkunzRKvLLpmtU7cdE}}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE }}" \
             -H "Content-Type: application/json" \
             -X POST \
             -d '{}' \
